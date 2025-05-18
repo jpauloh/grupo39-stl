@@ -13,6 +13,18 @@ st.title("Dashboard Interactivo - Grupo 39")
 data = pd.read_csv('data.csv')
 data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
 
+# Navegación
+st.sidebar.markdown("---")
+section = st.sidebar.radio("Ir a la sección:", [
+    "1. Selección de Variables Clave",
+    "2. Visualización Básica de Datos",
+    "3. Gráficos Compuestos",
+    "4. Visualización Multivariada",
+    "5. Visualización 3D"
+])
+
+st.sidebar.info("Grupo 39 | Proyecto Final")
+
 # Sidebar con filtros
 
 # Filtro por fecha y año
@@ -32,15 +44,7 @@ products = st.sidebar.multiselect("Línea de Producto", options=data["Product li
 payments = st.sidebar.multiselect("Método de Pago", options=data["Payment"].unique(), default=data["Payment"].unique())
 branches = st.sidebar.multiselect("Sucursal", options=data["Branch"].unique(), default=data["Branch"].unique())
 
-# Navegación
-st.sidebar.markdown("---")
-section = st.sidebar.radio("Ir a la sección:", [
-    "1. Selección de Variables Clave",
-    "2. Visualización Básica de Datos",
-    "3. Gráficos Compuestos",
-    "4. Visualización Multivariada",
-    "5. Visualización 3D"
-])
+
 
 # Aplicar filtros al dataframe
 filtered_data = data[
@@ -55,7 +59,7 @@ filtered_data = data[
     (data["Branch"].isin(branches))
 ]
 
-st.sidebar.info("Grupo 39 | Proyecto Final")
+
 
 # Sección 1
 if section == "1. Selección de Variables Clave":
