@@ -93,9 +93,13 @@ elif section == "2. Visualización Básica de Datos":
 # Sección 3: Gráficos Compuestos
 elif section == "3. Gráficos Compuestos":
     st.subheader("3. Gráficos Compuestos")
-    st.markdown("### Distribución del Total por Género y Tipo de Cliente")
-    g = sns.FacetGrid(filtered_data, col="Gender", row="Customer type", height=3)
+    st.markdown("### Distribución del Total de Compras según Género y Tipo de Cliente")
+
+    g = sns.FacetGrid(filtered_data, col="Gender", row="Customer type", margin_titles=True, height=4)
     g.map(sns.histplot, "Total", bins=20, kde=True)
+    g.fig.subplots_adjust(top=0.9)
+    g.fig.suptitle("Distribución del Total de Compras según Género y Tipo de Cliente")
+
     st.pyplot(g.fig)
 
 # Sección 4: Multivariado
