@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,7 +13,6 @@ data = pd.read_csv('data.csv')
 data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
 
 st.sidebar.info("Grupo 39 | Proyecto Final")
-
 # Navegación
 st.sidebar.markdown("---")
 section = st.sidebar.radio("Ir a la sección:", [
@@ -24,8 +22,6 @@ section = st.sidebar.radio("Ir a la sección:", [
     "4. Visualización Multivariada",
     "5. Visualización 3D"
 ])
-
-
 
 # Sidebar con filtros
 st.sidebar.title("Filtros de Segmentación")
@@ -58,7 +54,6 @@ filtered_data = data[
     (data["Payment"].isin(payments)) &
     (data["Branch"].isin(branches))
 ]
-
 
 # Sección 1
 if section == "1. Selección de Variables Clave":
@@ -109,19 +104,29 @@ elif section == "4. Visualización Multivariada":
     st.markdown("### Pairplot entre variables numéricas")
 
     selected_vars = ['Unit price', 'Quantity', 'Total', 'gross income', 'Rating']
-    fig4 = sns.pairplot(filtered_data[selected_vars], corner=True)
+    fig4 = sns.pairplot(filtered_data[selected_vars], diag_kind='hist' ,corner=True)
     st.pyplot(fig4)
 
 # Sección 5: Visualización 3D
 elif section == "5. Visualización 3D":
     st.subheader("5. Visualización en 3D")
-    st.markdown("### Scatterplot 3D: Unit Price vs Quantity vs Rating")
+    st.markdown("### Visualización 3D: Unit Price vs Quantity vs Rating")
 
-    fig = plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection='3d')
-    sc = ax.scatter(filtered_data['Unit price'], filtered_data['Quantity'], filtered_data['Rating'],
-                    c=filtered_data['Rating'], cmap='viridis')
-    ax.set_xlabel("Unit Price")
-    ax.set_ylabel("Quantity")
-    ax.set_zlabel("Rating")
+
+    x = filtered_data['Unit price']
+    y = filtered_data['Quantity']
+    z = filtered_data['Rating']
+
+    sc = ax.scatter(x, y, z, c=z, cmap='viridis', alpha=0.8)
+    ax.set_xlabel('Unit Price')
+    ax.set_ylabel('Quantity')
+    ax.set_zlabel('Rating')
+    ax.set_title('Visualización 3D: Unit Price vs Quantity vs Rating')
+
+    cbar = plt.colorbar(sc, ax=ax, shrink=0.5)
+    cbar.set_label('Rating')
+
+    plt.tight_layout()
     st.pyplot(fig)
