@@ -93,8 +93,8 @@ elif section == "2. Visualización Básica de Datos":
     st.markdown("### Matriz de Correlación entre Variables Numéricas")
     corr_vars = filtered_data[['Unit price', 'Quantity', 'Total', 'gross income', 'Rating']]
     corr_matrix = corr_vars.corr()
-    fig4, ax4 = plt.subplots(figsize=(10, 6))
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', ax=ax)
+    fig4, ax4 = plt.subplots(figsize=(14, 7))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', ax=ax4)
     ax4.set_title('Matriz de Correlación')
 
     st.pyplot(fig4)
