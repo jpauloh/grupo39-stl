@@ -71,7 +71,7 @@ elif section == "2. Visualización Básica de Datos":
 
     st.markdown("### Ventas Totales Diarias")
     daily_sales = filtered_data.groupby('Date')['Total'].sum()
-    fig, ax = plt.subplots(figsize=(10, 4))
+    fig, ax = plt.subplots(figsize=(14, 7))
     ax.plot(daily_sales.index, daily_sales.values, marker='o')
     ax.set_title('Ventas Totales por Día')
     ax.set_xlabel('Fecha')
@@ -80,12 +80,12 @@ elif section == "2. Visualización Básica de Datos":
     st.pyplot(fig)
 
     st.markdown("### Total vs Rating por Método de Pago")
-    fig2, ax2 = plt.subplots(figsize=(8, 4))
+    fig2, ax2 = plt.subplots(figsize=(14, 7))
     sns.scatterplot(data=filtered_data, x='Total', y='Rating', hue='Payment', ax=ax2)
     st.pyplot(fig2)
 
     st.markdown("### Boxplot: Total por Línea de Producto")
-    fig3, ax3 = plt.subplots(figsize=(10, 5))
+    fig3, ax3 = plt.subplots(figsize=(14, 7))
     sns.boxplot(data=filtered_data, x='Product line', y='Total', ax=ax3, palette='Set2')
     ax3.tick_params(axis='x', rotation=45)
     st.pyplot(fig3)
