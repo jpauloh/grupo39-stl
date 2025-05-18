@@ -90,6 +90,16 @@ elif section == "2. Visualización Básica de Datos":
     ax3.tick_params(axis='x', rotation=45)
     st.pyplot(fig3)
 
+    st.markdown("### Matriz de Correlación entre Variables Numéricas")
+    corr_vars = filtered_data[['Unit price', 'Quantity', 'Total', 'gross income', 'Rating']]
+    corr_matrix = corr_vars.corr()
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', ax=ax)
+    ax4.set_title('Matriz de Correlación')
+
+    st.pyplot(fig4)
+    
+
 # Sección 3: Gráficos Compuestos
 elif section == "3. Gráficos Compuestos":
     st.subheader("3. Gráficos Compuestos")
