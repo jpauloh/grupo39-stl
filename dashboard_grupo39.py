@@ -13,6 +13,8 @@ st.title("Dashboard Interactivo - Grupo 39")
 data = pd.read_csv('data.csv')
 data['Date'] = pd.to_datetime(data['Date'], format='%m/%d/%Y')
 
+st.sidebar.info("Grupo 39 | Proyecto Final")
+
 # Navegación
 st.sidebar.markdown("---")
 section = st.sidebar.radio("Ir a la sección:", [
@@ -23,9 +25,10 @@ section = st.sidebar.radio("Ir a la sección:", [
     "5. Visualización 3D"
 ])
 
-st.sidebar.info("Grupo 39 | Proyecto Final")
+
 
 # Sidebar con filtros
+st.sidebar.title("Filtros de Segmentación")
 
 # Filtro por fecha y año
 min_date = data["Date"].min()
@@ -36,15 +39,12 @@ date_range = st.sidebar.date_input("Rango de Fechas", [min_date, max_date], min_
 data["Month"] = data["Date"].dt.strftime("%B")
 months = st.sidebar.multiselect("Mes", options=data["Month"].unique(), default=data["Month"].unique())
 
-st.sidebar.title("Filtros de Segmentación")
 cities = st.sidebar.multiselect("Ciudad", options=data["City"].unique(), default=data["City"].unique())
 genders = st.sidebar.multiselect("Género", options=data["Gender"].unique(), default=data["Gender"].unique())
 types = st.sidebar.multiselect("Tipo de Cliente", options=data["Customer type"].unique(), default=data["Customer type"].unique())
 products = st.sidebar.multiselect("Línea de Producto", options=data["Product line"].unique(), default=data["Product line"].unique())
 payments = st.sidebar.multiselect("Método de Pago", options=data["Payment"].unique(), default=data["Payment"].unique())
 branches = st.sidebar.multiselect("Sucursal", options=data["Branch"].unique(), default=data["Branch"].unique())
-
-
 
 # Aplicar filtros al dataframe
 filtered_data = data[
@@ -58,7 +58,6 @@ filtered_data = data[
     (data["Payment"].isin(payments)) &
     (data["Branch"].isin(branches))
 ]
-
 
 
 # Sección 1
