@@ -57,8 +57,8 @@ filtered_data = data[
 
 # Sección 1
 if section == "1. Selección de Variables Clave":
-st.set_page_config(page_title="Variables Relevantes", layout="centered")
-st.title("📊 Variables Relevantes para el Análisis del Negocio")
+st.subheader("1. Selección de Variables Clave")
+st.markdown("###📊 Variables Relevantes para el Análisis del Negocio")
 
 # Crear tabla con pandas
 data_dict = {
