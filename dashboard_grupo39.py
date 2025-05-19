@@ -177,6 +177,41 @@ elif section == "2. Análisis Gráfico de las Ventas":
     ax.set_title('Matriz de Correlación entre Variables Numéricas', fontsize=16)
     st.pyplot(fig7)
 
+    st.markdown("### 2.8 🏪 Análisis de Correlación Numérica")
+    df_grouped = filtered_data.groupby(['Branch', 'Product line'])['gross income'].sum().unstack()
+    fig8, ax8 = plt.subplots(figsize=(14, 7))
+    df_grouped.plot(kind='bar', stacked=True, ax=ax8, colormap='Set3')
+    ax8.set_title('Composición del Ingreso Bruto por Sucursal y Línea de Producto', fontsize=14)
+    ax8.set_xlabel('Sucursal (Branch)')
+    ax8.set_ylabel('Ingreso Bruto Total')
+    ax8.legend(title='Línea de Producto', bbox_to_anchor=(1.05, 1), loc='upper left')
+    for idx, branch in enumerate(df_grouped.index):
+        y_offset = 0
+        for product in df_grouped.columns:
+            value = df_grouped.loc[branch, product]
+            if value > 0:
+                ax8.text(
+                    idx,                          # x
+                    y_offset + value / 2,         # y
+                    f'{value:.0f}',               # texto
+                    ha='center', va='center', fontsize=8
+                )
+                y_offset += value
+    
+    plt.tight_layout()
+    st.pyplot(fig8)
+    st.markdown("#### 📋 Ingreso Bruto Total por Sucursal")
+    ingresos_por_sucursal = (
+        filtered_data.groupby('Branch')['gross income']
+        .sum()
+        .round(2)
+        .reset_index()
+        .rename(columns={'Branch': 'Sucursal', 'gross income': 'Ingreso Bruto Total'})
+        .sort_values(by='Ingreso Bruto Total', ascending=False)
+        .reset_index(drop=True)
+    )
+    
+    st.dataframe(ingresos_por_sucursal, use_container_width=True)
 
     
 
