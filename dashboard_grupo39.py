@@ -232,7 +232,7 @@ elif section == "4. Visualización 3D":
     st.subheader("4. Visualización en 3D")
     st.markdown("### 4.1 Visualización 3D: Unit Price vs Quantity vs Rating")
 
-    fig = plt.figure(figsize=(10, 7))
+    fig = plt.figure(figsize=(14, 7))
     ax = fig.add_subplot(111, projection='3d')
 
     x = filtered_data['Unit price']
