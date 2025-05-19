@@ -30,17 +30,13 @@ st.sidebar.title("Filtros de Segmentación")
 min_date = data["Date"].min()
 max_date = data["Date"].max()
 date_range = st.sidebar.date_input("Rango de Fechas", [min_date, max_date], min_value=min_date, max_value=max_date)
-
-# Extraer año como columna adicional
-data["Month"] = data["Date"].dt.strftime("%B")
-months = st.sidebar.multiselect("Mes", options=data["Month"].unique(), default=data["Month"].unique())
-
-cities = st.sidebar.multiselect("Ciudad", options=data["City"].unique(), default=data["City"].unique())
-genders = st.sidebar.multiselect("Género", options=data["Gender"].unique(), default=data["Gender"].unique())
-types = st.sidebar.multiselect("Tipo de Cliente", options=data["Customer type"].unique(), default=data["Customer type"].unique())
-products = st.sidebar.multiselect("Línea de Producto", options=data["Product line"].unique(), default=data["Product line"].unique())
-payments = st.sidebar.multiselect("Método de Pago", options=data["Payment"].unique(), default=data["Payment"].unique())
-branches = st.sidebar.multiselect("Sucursal", options=data["Branch"].unique(), default=data["Branch"].unique())
+# Otros Filtros
+cities = st.sidebar.multiselect("Ciudad (City)", options=data["City"].unique(), default=data["City"].unique())
+genders = st.sidebar.multiselect("Género (Gender)", options=data["Gender"].unique(), default=data["Gender"].unique())
+types = st.sidebar.multiselect("Tipo de Cliente (Customer type)", options=data["Customer type"].unique(), default=data["Customer type"].unique())
+products = st.sidebar.multiselect("Línea de Producto (Product line)", options=data["Product line"].unique(), default=data["Product line"].unique())
+payments = st.sidebar.multiselect("Método de Pago (Payment)", options=data["Payment"].unique(), default=data["Payment"].unique())
+branches = st.sidebar.multiselect("Sucursal (Branch)", options=data["Branch"].unique(), default=data["Branch"].unique())
 
 # Aplicar filtros al dataframe
 filtered_data = data[
