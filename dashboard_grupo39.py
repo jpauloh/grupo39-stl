@@ -58,8 +58,8 @@ filtered_data = data[
 # Sección 1
 if section == "1. Selección de Variables Clave":
 st.subheader("1. Selección de Variables Clave")
-st.markdown("###📊 Variables Relevantes para el Análisis del Negocio")
 
+st.markdown("###📊 Variables Relevantes para el Análisis del Negocio")
 # Crear tabla con pandas
 data_dict = {
     "Variable": [
@@ -82,17 +82,12 @@ data_dict = {
         "Analizar la satisfacción del cliente"
     ]
 }
-
 df_vars = pd.DataFrame(data_dict)
-
 # Mostrar tabla
-st.dataframe(df_vars, use_container_width=True)
-    
-    
+st.dataframe(df_vars, use_container_width=True) 
 #    st.subheader("1. Selección de Variables Clave")
 #    st.markdown("""Se consideran variables clave para el análisis:
 #""")
-
 #- City, Gender, Branch, Customer type
 #- Product line, Payment
 #- Unit price, Quantity, Total, Rating, Gross income
