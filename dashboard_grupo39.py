@@ -80,7 +80,7 @@ if section == "1. Selección de Variables Clave":
 elif section == "2. Análisis Gráfico de las Ventas":
     st.subheader("2. Análisis Gráfico de las Ventas")
 
-    st.markdown("#### Evolución de las Ventas Totales")
+    st.markdown("#### 2.1 Evolución de las Ventas Totales")
     ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
     fig, ax = plt.subplots(figsize=(14, 7))
     ventas_diarias.plot(kind='line', marker='o', ax=ax)
@@ -93,7 +93,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     # Mostrar en Streamlit
     st.pyplot(fig)
 
-    st.markdown("#### Ingresos por Línea de Productos")
+    st.markdown("#### 2.2 Ingresos por Línea de Productos")
     ventas_por_producto = filtered_data.groupby('Product line')['Total'].sum().reset_index()
     ventas_por_producto = ventas_por_producto.sort_values(by='Total', ascending=False)
     fig2, ax2 = plt.subplots(figsize=(14, 7))
