@@ -166,7 +166,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
         for product in df_grouped.columns:
             value = df_grouped.loc[branch, product]
             if value > 0:
-                ax.text(
+                ax8.text(
                     idx,                          # x
                     y_offset + value / 2,         # y
                     f'{value:.0f}',               # texto
