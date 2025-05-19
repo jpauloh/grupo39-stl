@@ -58,36 +58,25 @@ filtered_data = data[
 # Sección 1
 if section == "1. Selección de Variables Clave":
     st.subheader("1. Selección de Variables Clave")
-    
-    st.markdown("###📊 Variables Relevantes para el Análisis del Negocio")
-    # Crear tabla con pandas
-    data_dict = {
-        "Variable": [
-            "Branch", "City", "Customer Type", "Gender", "Product line", "Unit price",
-            "Quantity", "Total", "Date", "Time", "Payment", "gross income", "Rating"
-        ],
-        "Análisis de Negocio": [
-            "Segmentar o agrupar las ventas según las distintas sucursales",
-            "Clasificar las ventas según ubicación geográfica",
-            "Segmentar las ventas según el tipo de cliente (Miembro o Normal)",
-            "Clasificar y comparar las ventas según el género de las personas (Masculino o Femenino)",
-            "Clasificar y comparar las ventas por línea de productos, observar cuál tiene más incidencia en el negocio",
-            "Analizar cómo influye el precio en la demanda de productos y satisfacción del cliente",
-            "Analizar la demanda de producto bajo el contexto del negocio",
-            "Evaluar el rendimiento del negocio",
-            "Analizar la evolución del negocio a través del tiempo",
-            "Observar momentos del día en qué se vende más",
-            "Observar los métodos de pago preferidos por el cliente",
-            "Evaluar la rentabilidad del negocio ¿dónde se está generando más valor?",
-            "Analizar la satisfacción del cliente"
-        ]
-    }
-    df_vars = pd.DataFrame(data_dict)
-    # Mostrar tabla
-    st.dataframe(df_vars, use_container_width=True) 
-    #    st.subheader("1. Selección de Variables Clave")
-    #    st.markdown("""Se consideran variables clave para el análisis:
-    #""")
+    st.markdown("""
+    #### Variables relevantes para el análisis del negocio
+
+    | Variable  | Análisis de Negocio  |
+    |-----------|-----------|
+    |**Branch** |Segmentar o agrupar las ventas según las distintas sucursales|
+    |**City**   |Clasificar las ventas según ubicación geográfica|
+    |**Customer Type**|Segmentar las ventas según el tipo de cliente (Miembro o Normal)|
+    |**Gender**|Clasificar y comparar las ventas según el género de las personas (Masculino o Femenino)|
+    |**Product line**|Clasificar y comparar las ventas por línea de productos, observar cuál tiene más incidencia en el negocio|
+    |**Unit price**|Analizar cómo influye el precio en la demanda de productos y satisfacción del cliente|
+    |**Quantity**|Analizar la demanda de producto bajo el contexto del negocio|
+    |**Total**|Evaluar el rendimiento del negocio|
+    |**Date**|Analizar la evolución del negocio a través del tiempo|
+    |**Time**|Observar momentos del día en qué se vende más|
+    |**Payment**|Observar los métodos de pago preferidos por el cliente|
+    |**gross income**|Evaluar la rentabilidad del negocio ¿dónde se está generando más valor?|
+    |**Rating**|Analizar la satisfacción del cliente|
+    """)
     #- City, Gender, Branch, Customer type
     #- Product line, Payment
     #- Unit price, Quantity, Total, Rating, Gross income
