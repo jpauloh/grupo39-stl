@@ -105,6 +105,15 @@ elif section == "2. Análisis Gráfico de las Ventas":
     plt.tight_layout()
     st.pyplot(fig2)
 
+    st.markdown("#### 2.3 Distribución de la Calificación de Clientes")
+    sns.set(style="white")
+    fig3, ax3 = plt.subplots(figsize=(14, 7))
+    sns.histplot(data=filtered_data, x='Rating', bins=40, kde=True, color='steelblue', edgecolor='black', ax=ax3)
+    ax.set_title('Distribución de la Calificación del Cliente', fontsize=16)
+    ax.set_xlabel('Rating')
+    ax.set_ylabel('Frecuencia')
+    st.pyplot(fig3)
+
     
 
 # Sección 3: Gráficos Compuestos
