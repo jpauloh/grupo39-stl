@@ -140,7 +140,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     st.markdown("### 2.5 Relación entre Costo y Ganancia Bruta")
     sns.set(style="white")
     fig5, ax5 = plt.subplots(figsize=(14, 7))
-    sns.scatterplot(data=filtered_data, x='cogs', y='gross income', alpha=0.6, color='steelblue', ax=ax)
+    sns.scatterplot(data=filtered_data, x='cogs', y='gross income', alpha=0.6, color='steelblue', ax=ax5)
     sns.regplot(data=filtered_data, x='cogs', y='gross income', scatter=False, color='darkred', ax=ax5)
     ax.set_title('Relación Costo de Bienes y Ganancia Bruta', fontsize=14)
     ax.set_xlabel('Costo de Bienes Vendidos (cogs)')
