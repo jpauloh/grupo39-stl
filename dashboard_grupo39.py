@@ -114,6 +114,29 @@ elif section == "2. Análisis Gráfico de las Ventas":
     ax.set_ylabel('Frecuencia')
     st.pyplot(fig3)
 
+    st.markdown("#### 2.4 Comparación del Gasto por Tipo de Cliente")
+    sns.set(style="white")
+    custom_palette = {'Member': 'steelblue', 'Normal': '#F4A7B9'}
+    fig4, ax4 = plt.subplots(figsize=(14, 7))
+    sns.boxplot(data=filtered_data, x='Customer type', y='Total', hue='Customer type',
+                palette=custom_palette, ax=ax4)
+    ax.set_title('Distribución del Gasto por Tipo de Cliente', fontsize=14)
+    ax.set_xlabel('Tipo de Cliente', fontsize=12)
+    ax.set_ylabel('Total', fontsize=12)
+    st.pyplot(fig4)
+    # ----- Estadísticas descriptivas por tipo de cliente -----
+    st.markdown("### 📊 Estadísticas Descriptivas por Tipo de Cliente")
+    stats = filtered_data.groupby('Customer type')['Total'].describe()[['mean', '50%', 'std', 'min', '25%', '75%', 'max']].rename(columns={
+        'mean': 'Media',
+        '50%': 'Mediana',
+        'std': 'Desviación estándar',
+        'min': 'Mínimo',
+        '25%': 'Q1',
+        '75%': 'Q3',
+        'max': 'Máximo'
+    })
+    st.dataframe(stats.style.format("{:.2f}"), use_container_width=True)
+
     
 
 # Sección 3: Gráficos Compuestos
