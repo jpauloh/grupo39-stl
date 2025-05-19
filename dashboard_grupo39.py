@@ -149,13 +149,33 @@ elif section == "2. Análisis Gráfico de las Ventas":
     correlacion = filtered_data[['cogs', 'gross income']].corr().iloc[0,1]
     st.markdown(f"#### 🔗 Coeficiente de correlación (Pearson): `{correlacion}`")
 
+    st.markdown("### 2.6 Métodos de Pago Preferidos")
+    sns.set(style="white")
+    custom_palette = {
+        'Credit card': 'steelblue',
+        'Cash': '#F4A7B9',
+        'Ewallet': '#FFD580'
+    }
+    fig6, ax6 = plt.subplots(figsize=(14, 7))
+    sns.countplot(data=filtered_data, x='Payment', hue='Payment', palette=custom_palette, legend=False, ax=ax6)
+    ax.set_title('Métodos de Pago Preferidos', fontsize=16)
+    ax.set_xlabel('Método de Pago')
+    ax.set_ylabel('Cantidad de Transacciones')
+    for p in ax.patches:
+        height = p.get_height()
+        ax.annotate(f'{int(height)}', 
+                    (p.get_x() + p.get_width() / 2., height / 2),
+                    ha='center', va='center', color='white', fontsize=12, fontweight='bold')
+    
+    st.pyplot(fig6)
+
 
     
 
 # Sección 3: Gráficos Compuestos
 elif section == "3. Gráficos Compuestos":
     st.subheader("3. Gráficos Compuestos")
-    st.markdown("### Distribución del Total de Compras según Género y Tipo de Cliente")
+    st.markdown("### 3.1 Distribución del Total de Compras según Género y Tipo de Cliente")
 
     g = sns.FacetGrid(filtered_data, col="Gender", row="Customer type", margin_titles=True, height=4)
     g.map(sns.histplot, "Total", bins=20, kde=True)
@@ -167,7 +187,7 @@ elif section == "3. Gráficos Compuestos":
 # Sección 4: Visualización 3D
 elif section == "4. Visualización 3D":
     st.subheader("4. Visualización en 3D")
-    st.markdown("### Visualización 3D: Unit Price vs Quantity vs Rating")
+    st.markdown("### 4.1 Visualización 3D: Unit Price vs Quantity vs Rating")
 
     fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection='3d')
