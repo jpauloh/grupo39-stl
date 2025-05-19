@@ -80,7 +80,7 @@ if section == "1. Selección de Variables Clave":
 elif section == "2. Análisis Gráfico de las Ventas":
     st.subheader("2. Análisis Gráfico de las Ventas")
 
-    st.markdown("### 2.1 Evolución de las Ventas Totales")
+    st.markdown("### 2.1 📈 Evolución de las Ventas Totales")
     ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
     fig, ax = plt.subplots(figsize=(14, 7))
     ventas_diarias.plot(kind='line', marker='o', ax=ax)
@@ -93,36 +93,36 @@ elif section == "2. Análisis Gráfico de las Ventas":
     # Mostrar en Streamlit
     st.pyplot(fig)
 
-    st.markdown("### 2.2 Ingresos por Línea de Productos")
+    st.markdown("### 2.2 📊 Ingresos por Línea de Productos")
     ventas_por_producto = filtered_data.groupby('Product line')['Total'].sum().reset_index()
     ventas_por_producto = ventas_por_producto.sort_values(by='Total', ascending=False)
     fig2, ax2 = plt.subplots(figsize=(14, 7))
     sns.barplot(data=ventas_por_producto, x='Total', y='Product line', color='steelblue', ax=ax2)
-    ax.set_title('Ventas Totales por Línea de Producto')
-    ax.set_xlabel('Total Ventas')
-    ax.set_ylabel('Línea de Producto')
-    ax.grid(axis='x', linestyle='--', alpha=0.7)
+    ax2.set_title('Ventas Totales por Línea de Producto')
+    ax2.set_xlabel('Total Ventas')
+    ax2.set_ylabel('Línea de Producto')
+    ax2.grid(axis='x', linestyle='--', alpha=0.7)
     plt.tight_layout()
     st.pyplot(fig2)
 
-    st.markdown("### 2.3 Distribución de la Calificación de Clientes")
+    st.markdown("### 2.3 ⭐ Distribución de la Calificación de Clientes")
     sns.set(style="white")
     fig3, ax3 = plt.subplots(figsize=(14, 7))
     sns.histplot(data=filtered_data, x='Rating', bins=40, kde=True, color='steelblue', edgecolor='black', ax=ax3)
-    ax.set_title('Distribución de la Calificación del Cliente', fontsize=16)
-    ax.set_xlabel('Rating')
-    ax.set_ylabel('Frecuencia')
+    ax3.set_title('Distribución de la Calificación del Cliente', fontsize=16)
+    ax3.set_xlabel('Rating')
+    ax3.set_ylabel('Frecuencia')
     st.pyplot(fig3)
 
-    st.markdown("### 2.4 Comparación del Gasto por Tipo de Cliente")
+    st.markdown("### 2.4 📦 Comparación del Gasto por Tipo de Cliente")
     sns.set(style="white")
     custom_palette = {'Member': 'steelblue', 'Normal': '#F4A7B9'}
     fig4, ax4 = plt.subplots(figsize=(14, 7))
     sns.boxplot(data=filtered_data, x='Customer type', y='Total', hue='Customer type',
                 palette=custom_palette, ax=ax4)
-    ax.set_title('Distribución del Gasto por Tipo de Cliente', fontsize=14)
-    ax.set_xlabel('Tipo de Cliente', fontsize=12)
-    ax.set_ylabel('Total', fontsize=12)
+    ax4.set_title('Distribución del Gasto por Tipo de Cliente', fontsize=14)
+    ax4.set_xlabel('Tipo de Cliente', fontsize=12)
+    ax4.set_ylabel('Total', fontsize=12)
     st.pyplot(fig4)
     # ----- Estadísticas descriptivas por tipo de cliente -----
     st.markdown("#### 📊 Estadísticas Descriptivas por Tipo de Cliente")
@@ -137,19 +137,19 @@ elif section == "2. Análisis Gráfico de las Ventas":
     })
     st.dataframe(stats.style.format("{:.2f}"), use_container_width=True)
 
-    st.markdown("### 2.5 Relación entre Costo y Ganancia Bruta")
+    st.markdown("### 2.5 📈 Relación entre Costo y Ganancia Bruta")
     sns.set(style="white")
     fig5, ax5 = plt.subplots(figsize=(14, 7))
     sns.scatterplot(data=filtered_data, x='cogs', y='gross income', alpha=0.6, color='steelblue', ax=ax5)
     sns.regplot(data=filtered_data, x='cogs', y='gross income', scatter=False, color='darkred', ax=ax5)
-    ax.set_title('Relación Costo de Bienes y Ganancia Bruta', fontsize=14)
-    ax.set_xlabel('Costo de Bienes Vendidos (cogs)')
-    ax.set_ylabel('Ganancia Bruta (gross income)')
+    ax5.set_title('Relación Costo de Bienes y Ganancia Bruta', fontsize=14)
+    ax5.set_xlabel('Costo de Bienes Vendidos (cogs)')
+    ax5.set_ylabel('Ganancia Bruta (gross income)')
     st.pyplot(fig5)
     correlacion = filtered_data[['cogs', 'gross income']].corr().iloc[0,1]
     st.markdown(f"#### 🔗 Coeficiente de correlación (Pearson): `{correlacion}`")
 
-    st.markdown("### 2.6 Métodos de Pago Preferidos")
+    st.markdown("### 2.6 💳 Métodos de Pago Preferidos")
     sns.set(style="white")
     custom_palette = {
         'Credit card': 'steelblue',
@@ -168,6 +168,14 @@ elif section == "2. Análisis Gráfico de las Ventas":
                     ha='center', va='center', color='white', fontsize=12, fontweight='bold')
     
     st.pyplot(fig6)
+
+    st.markdown("### 2.7 🔍 Análisis de Correlación Numérica")
+    variables_numericas = ['Unit price', 'Quantity', 'Tax 5%', 'Total', 'cogs', 'gross income', 'Rating']
+    correlation_matrix = filtered_data[variables_numericas].corr()
+    fig7, ax7 = plt.subplots(figsize=(14, 7))
+    sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5, ax=ax7)
+    ax.set_title('Matriz de Correlación entre Variables Numéricas', fontsize=16)
+    st.pyplot(fig7)
 
 
     
