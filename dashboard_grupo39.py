@@ -80,35 +80,19 @@ if section == "1. Selección de Variables Clave":
 elif section == "2. Análisis Gráfico de las Ventas":
     st.subheader("2. Análisis Gráfico de las Ventas")
 
-    st.markdown("### Ventas Totales Diarias")
-    daily_sales = filtered_data.groupby('Date')['Total'].sum()
-    fig, ax = plt.subplots(figsize=(14, 7))
-    ax.plot(daily_sales.index, daily_sales.values, marker='o')
-    ax.set_title('Ventas Totales por Día')
+    st.markdown("####📈 Evolución de las Ventas Totales")
+    ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ventas_diarias.plot(kind='line', marker='o', ax=ax)
+    ax.set_title('Ventas Diarias Totales')
     ax.set_xlabel('Fecha')
-    ax.set_ylabel('Total ($)')
-    ax.tick_params(axis='x', rotation=45)
+    ax.set_ylabel('Ventas Totales')
+    ax.grid(True)
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    # Mostrar en Streamlit
     st.pyplot(fig)
 
-    st.markdown("### Total vs Rating por Método de Pago")
-    fig2, ax2 = plt.subplots(figsize=(14, 7))
-    sns.scatterplot(data=filtered_data, x='Total', y='Rating', hue='Payment', ax=ax2)
-    st.pyplot(fig2)
-
-    st.markdown("### Boxplot: Total por Línea de Producto")
-    fig3, ax3 = plt.subplots(figsize=(14, 7))
-    sns.boxplot(data=filtered_data, x='Product line', y='Total', ax=ax3, palette='Set2')
-    ax3.tick_params(axis='x', rotation=45)
-    st.pyplot(fig3)
-
-    st.markdown("### Matriz de Correlación entre Variables Numéricas")
-    corr_vars = filtered_data[['Unit price', 'Quantity', 'Total', 'gross income', 'Rating']]
-    corr_matrix = corr_vars.corr()
-    fig4, ax4 = plt.subplots(figsize=(14, 7))
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f', ax=ax4)
-    ax4.set_title('Matriz de Correlación')
-
-    st.pyplot(fig4)
     
 
 # Sección 3: Gráficos Compuestos
