@@ -175,7 +175,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
                 y_offset += value
     
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig8)
 
     ingresos_por_sucursal = (
         filtered_data.groupby('Branch')['gross income']
