@@ -59,10 +59,10 @@ filtered_data = data[
 if section == "1. Selección de Variables Clave":
     st.subheader("1. Selección de Variables Clave")
     st.markdown("""Se consideran variables clave para el análisis:
-- City, Gender, Branch, Customer type
-- Product line, Payment
-- Unit price, Quantity, Total, Rating, Gross income
-Las variables categóricas permiten segmentar los datos; las numéricas aportan contexto de comportamiento y rentabilidad.
+#- City, Gender, Branch, Customer type
+#- Product line, Payment
+#- Unit price, Quantity, Total, Rating, Gross income
+#Las variables categóricas permiten segmentar los datos; las numéricas aportan contexto de comportamiento y rentabilidad.
 """)
 
 # Sección 2: Visualizaciones básicas
