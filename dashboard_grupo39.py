@@ -93,6 +93,18 @@ elif section == "2. Análisis Gráfico de las Ventas":
     # Mostrar en Streamlit
     st.pyplot(fig)
 
+    st.markdown("#### Ingresos por Línea de Productos")
+    ventas_por_producto = filtered_data.groupby('Product line')['Total'].sum().reset_index()
+    ventas_por_producto = ventas_por_producto.sort_values(by='Total', ascending=False)
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    sns.barplot(data=ventas_por_producto, x='Total', y='Product line', color='steelblue', ax=ax2)
+    ax.set_title('Ventas Totales por Línea de Producto')
+    ax.set_xlabel('Total Ventas')
+    ax.set_ylabel('Línea de Producto')
+    ax.grid(axis='x', linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    st.pyplot(fig2)
+
     
 
 # Sección 3: Gráficos Compuestos
