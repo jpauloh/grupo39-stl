@@ -137,6 +137,19 @@ elif section == "2. Análisis Gráfico de las Ventas":
     })
     st.dataframe(stats.style.format("{:.2f}"), use_container_width=True)
 
+    st.markdown("### 2.5 Relación entre Costo y Ganancia Bruta")
+    sns.set(style="white")
+    fig, ax = plt.subplots(figsize=(14, 7))
+    sns.scatterplot(data=filtered_data, x='cogs', y='gross income', alpha=0.6, color='steelblue', ax=ax)
+    sns.regplot(data=filtered_data, x='cogs', y='gross income', scatter=False, color='darkred', ax=ax)
+    ax.set_title('Relación Costo de Bienes y Ganancia Bruta', fontsize=14)
+    ax.set_xlabel('Costo de Bienes Vendidos (cogs)')
+    ax.set_ylabel('Ganancia Bruta (gross income)')
+    st.pyplot(fig)
+    correlacion = filtered_data[['cogs', 'gross income']].corr().iloc[0,1]
+    st.markdown(f"#### 🔗 Coeficiente de correlación (Pearson): `{correlacion:.3f}`")
+
+
     
 
 # Sección 3: Gráficos Compuestos
