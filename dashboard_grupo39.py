@@ -82,7 +82,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
 
     st.markdown("#### Evolución de las Ventas Totales")
     ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
-    fig, ax = plt.subplots(figsize=(12, 6))
+    fig, ax = plt.subplots(figsize=(14, 7))
     ventas_diarias.plot(kind='line', marker='o', ax=ax)
     ax.set_title('Ventas Diarias Totales')
     ax.set_xlabel('Fecha')
@@ -96,7 +96,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     st.markdown("#### Ingresos por Línea de Productos")
     ventas_por_producto = filtered_data.groupby('Product line')['Total'].sum().reset_index()
     ventas_por_producto = ventas_por_producto.sort_values(by='Total', ascending=False)
-    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    fig2, ax2 = plt.subplots(figsize=(14, 7))
     sns.barplot(data=ventas_por_producto, x='Total', y='Product line', color='steelblue', ax=ax2)
     ax.set_title('Ventas Totales por Línea de Producto')
     ax.set_xlabel('Total Ventas')
