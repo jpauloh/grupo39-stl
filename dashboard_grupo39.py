@@ -80,7 +80,7 @@ if section == "1. Selección de Variables Clave":
 elif section == "2. Análisis Gráfico de las Ventas":
     st.subheader("2. Análisis Gráfico de las Ventas")
 
-    st.markdown("📈#### Evolución de las Ventas Totales")
+    st.markdown("#### Evolución de las Ventas Totales")
     ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
     fig, ax = plt.subplots(figsize=(12, 6))
     ventas_diarias.plot(kind='line', marker='o', ax=ax)
