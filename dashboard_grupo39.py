@@ -42,7 +42,6 @@ branches = st.sidebar.multiselect("Sucursal (Branch)", options=data["Branch"].un
 filtered_data = data[
     (data["Date"] >= pd.to_datetime(date_range[0])) &
     (data["Date"] <= pd.to_datetime(date_range[1])) &
-    (data["Month"].isin(months)) &
     (data["City"].isin(cities)) &
     (data["Gender"].isin(genders)) &
     (data["Customer type"].isin(types)) &
