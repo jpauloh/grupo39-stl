@@ -158,12 +158,12 @@ elif section == "2. Análisis Gráfico de las Ventas":
     }
     fig6, ax6 = plt.subplots(figsize=(14, 7))
     sns.countplot(data=filtered_data, x='Payment', hue='Payment', palette=custom_palette, legend=False, ax=ax6)
-    ax.set_title('Métodos de Pago Preferidos', fontsize=16)
-    ax.set_xlabel('Método de Pago')
-    ax.set_ylabel('Cantidad de Transacciones')
-    for p in ax.patches:
+    ax6.set_title('Métodos de Pago Preferidos', fontsize=16)
+    ax6.set_xlabel('Método de Pago')
+    ax6.set_ylabel('Cantidad de Transacciones')
+    for p in ax6.patches:
         height = p.get_height()
-        ax.annotate(f'{int(height)}', 
+        ax6.annotate(f'{int(height)}', 
                     (p.get_x() + p.get_width() / 2., height / 2),
                     ha='center', va='center', color='white', fontsize=12, fontweight='bold')
     
