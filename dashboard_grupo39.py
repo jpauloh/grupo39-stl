@@ -125,7 +125,7 @@ elif section == "3. Gráficos Compuestos":
 
 # Sección 4: Visualización 3D
 elif section == "4. Visualización 3D":
-    st.subheader("5. Visualización en 3D")
+    st.subheader("4. Visualización en 3D")
     st.markdown("### Visualización 3D: Unit Price vs Quantity vs Rating")
 
     fig = plt.figure(figsize=(10, 7))
