@@ -80,7 +80,7 @@ if section == "1. Selección de Variables Clave":
 elif section == "2. Análisis Gráfico de las Ventas":
     st.subheader("2. Análisis Gráfico de las Ventas")
 
-    st.markdown("#### 2.1 Evolución de las Ventas Totales")
+    st.markdown("### 2.1 Evolución de las Ventas Totales")
     ventas_diarias = filtered_data.groupby('Date')['Total'].sum()
     fig, ax = plt.subplots(figsize=(14, 7))
     ventas_diarias.plot(kind='line', marker='o', ax=ax)
@@ -93,7 +93,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     # Mostrar en Streamlit
     st.pyplot(fig)
 
-    st.markdown("#### 2.2 Ingresos por Línea de Productos")
+    st.markdown("### 2.2 Ingresos por Línea de Productos")
     ventas_por_producto = filtered_data.groupby('Product line')['Total'].sum().reset_index()
     ventas_por_producto = ventas_por_producto.sort_values(by='Total', ascending=False)
     fig2, ax2 = plt.subplots(figsize=(14, 7))
@@ -105,7 +105,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     plt.tight_layout()
     st.pyplot(fig2)
 
-    st.markdown("#### 2.3 Distribución de la Calificación de Clientes")
+    st.markdown("### 2.3 Distribución de la Calificación de Clientes")
     sns.set(style="white")
     fig3, ax3 = plt.subplots(figsize=(14, 7))
     sns.histplot(data=filtered_data, x='Rating', bins=40, kde=True, color='steelblue', edgecolor='black', ax=ax3)
@@ -114,7 +114,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     ax.set_ylabel('Frecuencia')
     st.pyplot(fig3)
 
-    st.markdown("#### 2.4 Comparación del Gasto por Tipo de Cliente")
+    st.markdown("### 2.4 Comparación del Gasto por Tipo de Cliente")
     sns.set(style="white")
     custom_palette = {'Member': 'steelblue', 'Normal': '#F4A7B9'}
     fig4, ax4 = plt.subplots(figsize=(14, 7))
@@ -125,7 +125,7 @@ elif section == "2. Análisis Gráfico de las Ventas":
     ax.set_ylabel('Total', fontsize=12)
     st.pyplot(fig4)
     # ----- Estadísticas descriptivas por tipo de cliente -----
-    st.markdown("### 📊 Estadísticas Descriptivas por Tipo de Cliente")
+    st.markdown("#### 📊 Estadísticas Descriptivas por Tipo de Cliente")
     stats = filtered_data.groupby('Customer type')['Total'].describe()[['mean', '50%', 'std', 'min', '25%', '75%', 'max']].rename(columns={
         'mean': 'Media',
         '50%': 'Mediana',
